@@ -75,4 +75,53 @@ class Animal  {
 --tworzenie instancji
     const dog = new Animal("muszka", "york");
     typeof Animal //function
+
+
+THIS 
+Wiązanie this z obiektem następuje w chwili wywołania funkcji a nie w chwili jej utworzenia
+Funkcja strzałkowa NIE tworzy własnego this'a - będzie się odnosić do obiektu globalnego
+
+const car = {
+    name: 'polonez',
+    year: 1999
+    age () {
+        console.log(`Wiek samochodu to ${2021 - this.year}`)
+    }
+}
+car.age(); //Wiek samochodu to 22
+
+HERMETYZACJA
+-grupowanie metod i właściwości w obiekcie
+-kontrolowaniem dostępu do danych zajmuje się sam obiekt
+-metody get i set służą do pobierania i dostępu do danych
+-implementacja staje się ukryta a dostęp do danych w jednym obiekcie 
+jest udostępniany innemu obiektowi za pomocą interfejsu
+
+ABSTRAKCJA
+Realizujący określone przez projekt zadania (uproszczony model rzeczywistości) oparty na obiekcie
+Obiekty te mają określona budowę, interfejs i implementację, cel, procesy oraz posiadające relację z innymi obiektami.
+
+KOMPOZYCJA - relacja między obiektami
+-Asocjacja: każdy obiekt tej relacji istnieje niezależnie, istnienie jednego obiektu nie jest potrzebne do istnienia drugiego
+-Agregacja: obiekt składa się z innych obiektów(agreguje je). Sens istnienia agregatu (obiektu głównego) polega na posiadaniu obiektów, które przechowuje
+
+MODULES
+umożliwa pisanie kodu w kilku plikach(modułach) oraz import i eksport danych między nimi
+<script src="script.js" type="module"></script> 
+//plik_dodatkowy.js
+export const add = (a,b) => a + b;
+export let number = 100;
+
+//main.js
+import { add, number } from plik_dodatkowy.js
+const result add(2,3) //wynik to 5
+
+ścieżki:
+    ./   katalog bieżący
+   ../   katalog nadrzędny
+     /   katalog główny
+
+
+     import * as params from './params.js'    <= import * tworzy nowy obiekt który nazywamy params i w nim możemy się odwołać do wszystkich właściwości w importowanym pliku
+
 */
