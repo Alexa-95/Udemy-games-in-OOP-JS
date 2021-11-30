@@ -20,6 +20,18 @@ export class Sprite {
       canvas.context.globalAlpha = this.alfa / 255;
     }
 
+    canvas.context.drawImage(
+      this.spritesImage,
+      numberOfSprites * this.width,
+      0,
+      this.width,
+      this.height,
+      this.x + this.offset.x,
+      this.y + this.offset.y,
+      this.width * ratio,
+      this.height * ratio
+    );
+
     if(this.alpha !== 255) {
       canvas.context.globalAlpha = 1;
     }
