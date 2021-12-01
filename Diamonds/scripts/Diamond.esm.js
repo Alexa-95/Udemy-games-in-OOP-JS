@@ -1,17 +1,15 @@
 import { Sprite } from './Sprite.esm.js'
-import { GAME_BOARD_X_OFSET, GAME_BOARD_Y_OFSET } from './Game.esm.js';
+import { GAME_BOARD_X_OFFSET, GAME_BOARD_Y_OFFSET, DIAMOND_SIZE } from './GameLevels.esm.js';
 
 const DIAMOND_ORIGINAL_SIZE = 32;
-export const DIAMOND_SIZE = 48;
 export const NUMBER_OF_DIAMONDS_TYPES = 6;
-
 const DIAMOND_ZOOM = DIAMOND_SIZE / DIAMOND_ORIGINAL_SIZE;
 
 export class Diamond extends Sprite {
   constructor(x, y, row, column, kind, diamondSpriteImage){
     const offset = {
-      x: GAME_BOARD_X_OFSET,
-      y: GAME_BOARD_Y_OFSET
+      x: GAME_BOARD_X_OFFSET,
+      y: GAME_BOARD_Y_OFFSET
     }
     super(
       x, 

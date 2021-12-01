@@ -5,8 +5,6 @@ import { Diamond } from './Diamond.esm.js';
 import { gameLevels } from './GameLevels.esm.js'
 import { media } from "./Media.esm.js";
 
-export const GAME_BOARD_X_OFSET = 40;
-export const GAME_BOARD_Y_OFSET = -5;
 
 const gameState = {
   pointsToWin: 7000,
