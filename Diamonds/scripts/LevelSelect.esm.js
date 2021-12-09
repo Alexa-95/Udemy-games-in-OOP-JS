@@ -2,19 +2,9 @@ import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js';
 import { canvas } from './Canvas.esm.js';
 import { loader, DATA_LOADED_EVENT_NAME } from './Loader.esm.js';
 import { game } from './Game.esm.js';
+import { gameLevels } from './GameLevels.esm.js';
 import { media } from './Media.esm.js';
 
-const gameLevels = [
-  {
-    level: 1
-  },
-  {
-    level: 2
-  },
-  {
-    level: 3
-  },
-]
 const LEVEL_SELECT_BUTTON_ID = 'level-select__button';
 const LEVEL_SELECT_ID = 'js-level-select-screen';
 
@@ -30,15 +20,15 @@ class LevelSelect extends Common {
     button.classList.add(LEVEL_SELECT_BUTTON_ID);
     button.textContent = value;
     button.value = value;
-    button.addEventListener('click', event => this.buttonOnClickHandler(event));
+    button.addEventListener('click', event => this.buttonOnClickHanlder(event));
     this.element.appendChild(button);
   }
 
-  buttonOnClickHandler(event){
-    this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
-    this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
-    this.loadLevel(event.currentTarget.value);
-  }
+	buttonOnClickHanlder(event) {
+		this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
+		this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+		this.loadLevel(event.currentTarget.value);
+	}
 
   loadLevel(level) {
     media.diamondsSprite = loader.loadImage('images/diamonds-transparent.png')
