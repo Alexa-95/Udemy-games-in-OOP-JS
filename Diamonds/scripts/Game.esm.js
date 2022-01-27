@@ -11,6 +11,7 @@ const DIAMONDS_ARRAY_WIDTH = 8;
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1;
 const LAST_ELEMENT_DIAMONDS_ARRAY = DIAMONDS_ARRAY_WIDTH * DIAMONDS_ARRAY_HEIGHT - 1;
 const SWAPING_SPEED = 8;
+const TRANSPARENCY_SPEED = 10;
 
 
 const gameState = {
@@ -38,12 +39,13 @@ class Game extends Common {
     this.handleMouseClick();
     this.findMatches();
     this.moveDiamonds();
+	this.hideAnimation();
     this.countScores();
     this.revertSwap();
     this.clearMatched();
     canvas.drawGameOnCanvas(this.gameState);
     this.gameState.getGameBoard().forEach(diamond => diamond.draw());
-    this.animationFrame = window.requestAnimationFrame(() => this.animate());
+    this.checkEndOfGame();
   }
 
 	handleMouseState() {
@@ -173,6 +175,19 @@ class Game extends Common {
 		});
 	}
 
+	hideAnimation(){
+		if(this.gameState.getIsMoving()){
+			return
+		}
+
+		this.gameState.getGameBoard().forEach(diamond => {
+			if(diamond.match && diamond.alpha > TRANSPARENCY_SPEED){
+				diamond.alpha -= TRANSPARENCY_SPEED;
+				this.gameState.setIsMoving(true);
+			}
+		});
+	}
+
   revertSwap(){
     if(this.gameState.getIsSwaping() && !this.gameState.getIsMoving()){
       if(!this.scores){
@@ -215,6 +230,23 @@ class Game extends Common {
         diamond.alpha = 255;
       }
     });
+  }
+
+  checkEndOfGame() {
+	  if(!this.gameState.getLeftMovement() && !this.gameState.getIsMoving()
+	  && !this.gameState.getIsSwaping()){
+		  const isPlayerWinner = this.gameState.isPlayerWinner();
+
+		  if(isPlayerWinner && gameLevels[this.gameState.level]){
+			  console.log(`Kolejny lvl odblokowany!`);
+		  }
+
+		  console.log('Jeżeli gram ma więcej punktów aktualizacja hight scores');
+
+	  } 
+	  else{
+		  this.animationFrame = window.requestAnimationFrame(() => this.animate());
+	  }
   }
 
 	swap(firstDiamond, secondDiamond) {
