@@ -11,29 +11,29 @@ export const Weights = [
     "J",
     "Q",
     "K",
-    "A",
+    "A"
   ];
   
 export const Types = ["spades", "hearts", "diamonds", "clubs"];
 
 export class Card {
-	mapTextToSign = {
+    mapTextToSign = {
 		hearts: '&hearts;',
 		spades: '&spades;',
 		diamonds: '&diams;',
 		clubs: '&clubs;'
 	};
 
-	constructor(weight, type) {
-		this.weight = weight;
-		this.type = type;
-	}
+    constructor(weight, type){
+        this.weight = weight;
+        this.type = type;
+    }
 
-	render() {
-		const card = document.createElement('div');
-		card.setAttribute('class', `card ${this.type}`);
-		card.innerHTML = `${this.weight} ${this.mapTextToSign[this.type]}`;
+    render(){
+        const card = document.createElement('div');
+        card.setAttribute('class', `card ${this.type}`);
+        card.innerHTML = `${this.weight} ${this.mapTextToSign[this.type]}`;
 
-		return card;
-	}
+        return card;
+    }
 }
